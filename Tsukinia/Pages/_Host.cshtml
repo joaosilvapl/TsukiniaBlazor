@@ -20,10 +20,23 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
     </environment>
     <link href="css/site.css" rel="stylesheet" />
+    <link rel="manifest" href="manifest.json">
+    <link rel="script" href="serviceworker.js">
+    <meta name="theme-color" content="#052767" />
 </head>
 <body>
     <app>@(await Html.RenderComponentAsync<App>())</app>
 
     <script src="_framework/blazor.server.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            console.log('Registering service worker now');
+            navigator.serviceWorker.register('/serviceworker.js')
+                .then(function () {
+                    console.log('Service Worker Registered');
+                });
+        }
+    </script>
 </body>
 </html>
