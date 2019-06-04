@@ -133,3 +133,23 @@ app {
         display: block;
     }
 }
+
+.circle{
+width:50%;
+height:50%;
+border-radius:25%;
+font-size:50px;
+color:#fff;
+line-height:500%;
+text-align:center;
+background:purple;
+}
+
+.horizontalcenter{
+    margin:auto;
+    text-align: center;
+}
+
+.balanceheader{
+    padding: 30px;
+}
