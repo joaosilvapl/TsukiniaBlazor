@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Tsukinia.Data;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Push;
 
 namespace Tsukinia
 {
@@ -47,6 +49,34 @@ namespace Tsukinia
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+
+            if (!AppCenter.Configured)
+            {
+                Push.PushNotificationReceived += (sender, e) =>
+                {
+                    // Add the notification message and title to the message
+                    var summary = $"Push notification received:" +
+                                  $"\n\tNotification title: {e.Title}" +
+                                  $"\n\tMessage: {e.Message}";
+
+                    // If there is custom data associated with the notification,
+                    // print the entries
+                    if (e.CustomData != null)
+                    {
+                        summary += "\n\tCustom data:\n";
+                        foreach (var key in e.CustomData.Keys)
+                        {
+                            summary += $"\t\t{key} : {e.CustomData[key]}\n";
+                        }
+                    }
+
+                    Tsukinia.Core.PushNotification.PushNotificationManager.ReceivedNotifications.Add(summary);
+
+                };
+            }
+
+            AppCenter.Start(Tsukinia.Secrets.AppCenterCode, typeof(Push));
         }
     }
 }

@@ -28,6 +28,7 @@
     <app>@(await Html.RenderComponentAsync<App>())</app>
 
     <script src="_framework/blazor.server.js"></script>
+    
 
     <script>
         if ('serviceWorker' in navigator) {
@@ -38,5 +39,8 @@
                 });
         }
     </script>
+
+<script src="notification.js"></script>
+
 </body>
 </html>
