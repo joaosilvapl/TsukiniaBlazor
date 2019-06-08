@@ -39,7 +39,8 @@ namespace Tsukinia.Translation
             {"YourBalanceIs", new TranslationData("Your balance is:", "Twój saldo to:")},
             {"Home", new TranslationData("Home","Start")},
             {"Activity", new TranslationData("Activity", "Aktywność")},
-            {"Settings", new TranslationData("Settings", "Ustawienia")}
+            {"Settings", new TranslationData("Settings", "Ustawienia")},
+            {"Loading", new TranslationData("Loading data. Please wait a tiny bit...", "Ładuję dane. Proszę poczekać chwilkę...")}
         };
 
         private class TranslationData
@@ -52,5 +53,9 @@ namespace Tsukinia.Translation
             }
         }
 
+    }
+
+    public interface ITextProvider
+    {
     }
 }

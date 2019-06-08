@@ -28,7 +28,9 @@ var filesToCache = [
     '/_framework/_bin/System.dll',
     '/_framework/_bin/System.Core.dll', 
     //Pages
-    '/counter',
+    '/activity',
+    '/settings',
+    '/',
     //The compiled project .dll's
     '/_framework/_bin/Tsukinia.dll'
 ];
