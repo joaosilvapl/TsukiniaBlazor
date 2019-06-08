@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Tsukinia.Data;
+using Tsukinia.Translation;
 
 namespace Tsukinia
 {
@@ -26,6 +27,9 @@ namespace Tsukinia
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //TODO: get from settings
+            TextProvider.SetCulture(new System.Globalization.CultureInfo(1045));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

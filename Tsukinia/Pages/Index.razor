@@ -1,7 +1,9 @@
 ﻿@page "/"
 
-<h1 class="horizontalcenter">Good morning, Gaby!</h1>
+<h1 class="horizontalcenter">@Tsukinia.Translation.TextProvider.GetText("Hello") Gaby!</h1>
 
-<div class="horizontalcenter balanceheader">Your balance is:</div>
+<div class="horizontalcenter balanceheader">@Tsukinia.Translation.TextProvider.GetText("YourBalanceIs")</div>
 
+<NavLink class="nav-link" href="activity">
 <div class="circle horizontalcenter">$175</div>
+</NavLink>
