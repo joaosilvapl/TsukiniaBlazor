@@ -1,5 +1,4 @@
 @page "/counter"
-@using Tsukinia.Core.PushNotification
 
 <h1>Counter</h1>
 
@@ -12,16 +11,6 @@
 
     void IncrementCount()
     {
-        currentCount+=10;
-
-var pushNotificationManager = new PushNotificationManager();
-
-pushNotificationManager.Send(new PushNotificationData
-                {
-                    Name = "Notification from Android App",
-                    Title = "My title",
-                    Body = "Some text" + currentCount
-                });
-
+        currentCount+=3;
     }
 }

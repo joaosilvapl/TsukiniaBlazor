@@ -17,29 +17,19 @@ namespace Tsukinia.Data
         public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
         {
 
-            // HttpClient client = new HttpClient();
+            HttpClient client = new HttpClient();
 
-            // var url = Tsukinia.Secrets.GetUserByIdFunctionUrl.Replace("{userId}", "47b63af8-2c2e-4fe8-a438-ff221fbce180");
+            var url = Tsukinia.Secrets.GetUserByIdFunctionUrl.Replace("{userId}", "47b63af8-2c2e-4fe8-a438-ff221fbce180");
 
-            // var dataAsString = await client.GetAsync(url);
+            var dataAsString = await client.GetAsync(url);
 
-            // var text = await dataAsString.Content.ReadAsStringAsync();
+            var text = await dataAsString.Content.ReadAsStringAsync();
 
-            // var result = System.Text.Json.Serialization.JsonSerializer.Parse<OperationResult<UserData>>(text);
+            var result = System.Text.Json.Serialization.JsonSerializer.Parse<OperationResult<UserData>>(text);
 
-//             return new WeatherForecast[]{
-// new WeatherForecast{
-//     Summary = result.Result.Id,
-//     Date = DateTime.Today,
-//     TemperatureC = 33,
-//     TemperatureF = 66
-// }
-
-//         };
-
-return new WeatherForecast[]{
+            return new WeatherForecast[]{
 new WeatherForecast{
-    Summary = Tsukinia.Core.PushNotification.PushNotificationManager.ReceivedNotifications.Count.ToString(),
+    Summary = result.Result.Id,
     Date = DateTime.Today,
     TemperatureC = 33,
     TemperatureF = 66
