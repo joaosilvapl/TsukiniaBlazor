@@ -48,6 +48,8 @@ namespace Tsukinia.Translation
             {"Refresh", new TranslationData("Refresh", "Odśwież")},
             {"AdminPassword", new TranslationData("Admin password", "Hasło administratora")},
             {"Submit", new TranslationData("Submit", "Wyślij")},
+            {"YourNextGoal", new TranslationData("Your next goal:", "Twój obecny cel:")},
+            
         };
 
         private class TranslationData
