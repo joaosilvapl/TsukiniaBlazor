@@ -2,6 +2,6 @@
 {
     public static class GlobalConstants
     {
-        public const string DefaultCurrencySymbol = "pts";
+        public const string DefaultCurrencySymbol = "zł";
     }
 }
