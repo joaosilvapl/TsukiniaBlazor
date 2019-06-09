@@ -30,7 +30,7 @@ var filesToCache = [
     //Pages
     '/activity',
     '/settings',
-    '/',
+    '/addactivity',
     //The compiled project .dll's
     '/_framework/_bin/Tsukinia.dll'
 ];

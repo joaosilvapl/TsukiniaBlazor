@@ -43,7 +43,9 @@ namespace Tsukinia.Translation
             {"Loading", new TranslationData("Loading data. Please wait a tiny bit...", "Ładuję dane. Proszę poczekać chwilkę...")},
             {"Type", new TranslationData("Type", "Typ")},
             {"Title", new TranslationData("Title", "Tytuł")},
-            {"Points", new TranslationData("Points", "Punkty")}
+            {"Points", new TranslationData("Points", "Punkty")},
+            {"AddActivity", new TranslationData("Add activity", "Dodaj aktywność")},
+            {"Refresh", new TranslationData("Refresh", "Odśwież")}
         };
 
         private class TranslationData

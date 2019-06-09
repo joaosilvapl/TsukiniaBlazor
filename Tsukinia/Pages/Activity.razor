@@ -31,6 +31,12 @@ else
             }
         </tbody>
     </table>
+
+    <NavLink class="nav-link" href="addactivity">
+    <button class="btn btn-primary">@Tsukinia.Translation.TextProvider.GetText("AddActivity")</button>
+    </NavLink>
+
+    <button class="btn btn-primary" onclick="@Refresh">@Tsukinia.Translation.TextProvider.GetText("Refresh")</button>
 }
 
 @functions {
@@ -41,9 +47,21 @@ else
 
     protected override void OnInit()
     {
-        if(AppManager.Instance.AppData?.ChildActivities != null){
-            userActivities = AppManager.Instance.AppData?.ChildActivities.Select(x => new ActivityItem(x)).ToList();
+        this.LoadActivities();
+    }
+
+    private void LoadActivities()
+    {
+        if(AppManager.Instance.AppData?.ChildActivities != null)
+        {
+            userActivities = AppManager.Instance.AppData?.ChildActivities.OrderByDescending(y => y.DateUtc).Select(x => new ActivityItem(x)).ToList();
         }
     }
 
+    void Refresh()
+    {
+        AppManager.Instance.RefreshAppData();
+        this.LoadActivities();
+        this.StateHasChanged();
+    }
 }

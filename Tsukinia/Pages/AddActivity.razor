@@ -1,0 +1,50 @@
+@page "/addactivity"
+@using Tsukinia.Core;
+@using Tsukinia.Translation;
+@using Tsukinia.AzureClient;
+@using Tsukinia.Presentation;
+
+<h1>@Tsukinia.Translation.TextProvider.GetText("AddActivity")</h1>
+
+@Tsukinia.Translation.TextProvider.GetText("Title")<input type="text" bind=@Title /><br />  
+
+@Tsukinia.Translation.TextProvider.GetText("Type")
+<select bind="@SelectedType">
+
+    <option value=@ActivityType.ManualAddOrRemove>Manual</option>
+    <option value=@ActivityType.SchoolTestResult>School</option>
+    <option value=@ActivityType.Withdrawal>Withdrawal</option>
+
+</select>
+
+<br /> 
+
+@Tsukinia.Translation.TextProvider.GetText("Points")<input type="text" bind=@Points /><br />  
+  
+<button class="btn btn-primary" onclick="@SubmitActivity">@Tsukinia.Translation.TextProvider.GetText("AddActivity")</button>
+
+@functions {  
+    public string Title { get; set; }  
+    public string Points {get;set;}
+    public string SelectedType {get;set;} = "ManualAddOrRemove";
+
+    async void SubmitActivity()
+    {
+        var repository = new AzureClientUserActivityRepository();
+
+        int points = 0;
+        int.TryParse(this.Points, out points);
+
+        var activityType = (ActivityType)Enum.Parse(typeof(ActivityType),SelectedType);
+
+        await repository.Insert(new UserActivityData(){
+            UserId = AppManager.Instance.AppData.UserData.Id,
+            ActivityId = Guid.NewGuid().ToString(),
+            ActivityType = activityType,
+            Points = points,
+            ActivityTitle = Title,
+            DateUtc = DateTime.UtcNow
+        });
+
+    }
+}  

@@ -33,7 +33,7 @@ namespace Tsukinia.AzureClient
             }
         }
 
-        public static T PostData<T>(string functionNameAndParameters, object bodyData)
+        public static async Task<T> PostData<T>(string functionNameAndParameters, object bodyData)
         {
             var url = Secrets.AzureBaseUrl + functionNameAndParameters;
 
@@ -43,13 +43,14 @@ namespace Tsukinia.AzureClient
             httpWebRequest.ContentType = "text/json";
             httpWebRequest.Headers["x-functions-key"] = Secrets.AzureFunctionKey;
             httpWebRequest.Method = "POST";
+
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(body);
                 streamWriter.Flush();
             }
 
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            var httpResponse = (HttpWebResponse)(await httpWebRequest.GetResponseAsync());
 
             var responseStream = httpResponse.GetResponseStream();
 
@@ -60,7 +61,7 @@ namespace Tsukinia.AzureClient
 
             using (var streamReader = new StreamReader(responseStream))
             {
-                var response = streamReader.ReadToEnd();
+                var response = await streamReader.ReadToEndAsync();
 
                 return System.Text.Json.Serialization.JsonSerializer.Parse<T>(response);
             }

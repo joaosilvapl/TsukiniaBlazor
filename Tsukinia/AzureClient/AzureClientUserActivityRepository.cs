@@ -8,9 +8,9 @@ namespace Tsukinia.AzureClient
 {
     public class AzureClientUserActivityRepository
     {
-        public DataOperationResult<UserActivityData> Insert(UserActivityData userActivityData)
+        public async Task<DataOperationResult<UserActivityData>> Insert(UserActivityData userActivityData)
         {
-            return AzureClientHelper.PostData<DataOperationResult<UserActivityData>>("AddUserActivityFunction", new
+            return await AzureClientHelper.PostData<DataOperationResult<UserActivityData>>("AddUserActivityFunction", new
             {
                 userId = userActivityData.UserId,
                 activityId = userActivityData.ActivityId,
