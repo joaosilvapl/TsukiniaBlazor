@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Tsukinia.Core;
 using Tsukinia.Translation;
 
 namespace Tsukinia
@@ -27,6 +28,9 @@ namespace Tsukinia
         {
             //TODO: get from settings
             TextProvider.SetCulture(new System.Globalization.CultureInfo(1045));
+
+            //TODO: load data asynchronously
+            AppManager.Instance.LoadUserById(Secrets.TestUserChild_UserId);
 
             if (env.IsDevelopment())
             {

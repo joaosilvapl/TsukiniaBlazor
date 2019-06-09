@@ -1,9 +1,33 @@
 ﻿@page "/"
+@using System.Linq;
+@using Tsukinia.Core;
 
-<h1 class="horizontalcenter">@Tsukinia.Translation.TextProvider.GetText("Hello") Gaby!</h1>
+<h1 class="horizontalcenter">@Tsukinia.Translation.TextProvider.GetText("Hello") @Tsukinia.Core.AppManager.Instance.AppData?.UserData?.Name!</h1>
 
 <div class="horizontalcenter balanceheader">@Tsukinia.Translation.TextProvider.GetText("YourBalanceIs")</div>
 
 <NavLink class="nav-link" href="activity">
-<div class="circle horizontalcenter">$175</div>
+<div class="circle horizontalcenter">@balanceText</div>
 </NavLink>
+
+@functions{
+
+string balanceText = @Tsukinia.Translation.TextProvider.GetText("Loading");
+
+protected override void OnInit(){
+
+
+    List<UserActivityData> userActivities = Tsukinia.Core.AppManager.Instance.AppData?.ChildActivities;
+
+
+if(userActivities != null)
+{
+    int total = userActivities.Sum(x => x.Points);
+
+    balanceText = total + AppManager.Instance.AppData.CurrencySymbol;
+}
+
+    
+}
+
+}

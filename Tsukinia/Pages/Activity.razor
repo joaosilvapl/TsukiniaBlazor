@@ -34,21 +34,8 @@ else
 
 @functions {
 
-    string message = TextProvider.GetText("Loading");
+    List<UserActivityData> userActivities = AppManager.Instance.AppData?.ChildActivities;
 
-    List<UserActivityData> userActivities;
+    string message = AppManager.Instance.AppData?.ChildActivities == null ? "No data to display" : null;
 
-    protected override async Task OnInitAsync()
-    {
-        var userActivityRepository = new AzureClientUserActivityRepository();
-
-        var operationResult = await userActivityRepository.GetAllForUser(Secrets.TestUserChild_UserId);
-
-        if(!operationResult.Success){
-            message = "Sadly, an error occurred";
-        }
-        else{
-            userActivities = operationResult.Result;
-        }
-    }
 }
