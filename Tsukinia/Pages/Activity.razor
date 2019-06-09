@@ -32,16 +32,20 @@ else
         </tbody>
     </table>
 
+<div class="@AddActivityButtonClass">
     <NavLink class="nav-link" href="addactivity">
     <button class="btn btn-primary">@Tsukinia.Translation.TextProvider.GetText("AddActivity")</button>
     </NavLink>
+</div>
 
-    <button class="btn btn-primary" onclick="@Refresh">@Tsukinia.Translation.TextProvider.GetText("Refresh")</button>
+<button class="btn btn-primary" onclick="@Refresh">@Tsukinia.Translation.TextProvider.GetText("Refresh")</button>
 }
 
 @functions {
 
     List<ActivityItem> userActivities;
+
+    string AddActivityButtonClass = AppManager.Instance.AppData.IsAdmin ? "visible" : "hidden";
 
     string message = AppManager.Instance.AppData?.ChildActivities == null ? "No data to display" : null;
 

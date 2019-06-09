@@ -176,3 +176,12 @@ background:purple;
 .activity_icon_purple{
     color: purple;
 }
+
+.visible{
+    display:inline-block;
+}
+
+.hidden{
+    display:none;
+}
+

@@ -1,7 +1,21 @@
 @page "/settings"
+@using Tsukinia.Core;
 
 <h1>@Tsukinia.Translation.TextProvider.GetText("Settings")</h1>
 
-<p>Application settings</p>
+<p>@Tsukinia.Translation.TextProvider.GetText("AdminPassword")<input type="text" bind=@AdminPassword /></p>
 
-<p><em>Under construction...</em></p>
+<p><button class="btn btn-primary" onclick="@SubmitAdminPassword">@Tsukinia.Translation.TextProvider.GetText("Submit")</button></p>
+
+@functions
+{
+    public string AdminPassword {get;set;}
+
+    void SubmitAdminPassword()
+    {
+        if(this.AdminPassword == "636465")
+        {
+            AppManager.Instance.AppData.IsAdmin = true;
+        }
+    }
+}

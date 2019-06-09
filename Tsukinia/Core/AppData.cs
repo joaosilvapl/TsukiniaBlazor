@@ -13,6 +13,8 @@ namespace Tsukinia.Core
         public List<UserActivityData> ChildActivities { get; set; }
 
         public string CurrencySymbol { get; set; }
+
+        public bool IsAdmin {get;set;}
     }
 
 }

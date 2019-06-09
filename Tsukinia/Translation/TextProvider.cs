@@ -45,7 +45,9 @@ namespace Tsukinia.Translation
             {"Title", new TranslationData("Title", "Tytuł")},
             {"Points", new TranslationData("Points", "Punkty")},
             {"AddActivity", new TranslationData("Add activity", "Dodaj aktywność")},
-            {"Refresh", new TranslationData("Refresh", "Odśwież")}
+            {"Refresh", new TranslationData("Refresh", "Odśwież")},
+            {"AdminPassword", new TranslationData("Admin password", "Hasło administratora")},
+            {"Submit", new TranslationData("Submit", "Wyślij")},
         };
 
         private class TranslationData
