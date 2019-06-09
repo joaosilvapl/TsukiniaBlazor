@@ -4,16 +4,12 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.Json.Serialization;
-using Cloudcrate.AspNetCore.Blazor.Browser.Storage;
 using Tsukinia.AzureClient;
 
 namespace Tsukinia.Core
 {
     public class AppManager
     {
-        private const string SavedAppDataStorageKey = "SavedAppData";
-        private static LocalStorage Storage = new LocalStorage();
-
         public AppData AppData { get; } = new AppData();
 
         public CultureInfo CurrentCulture = new CultureInfo(1033);
@@ -39,18 +35,8 @@ namespace Tsukinia.Core
 
         private static SavedAppData LoadSavedData()
         {
-            try
-            {
-                var savedData = Storage[SavedAppDataStorageKey];
-
-                return JsonSerializer.Parse<SavedAppData>(savedData);
-
-            }
-            catch (Exception)
-            {
-                //TODO: log exception
-                return null;
-            }
+            //TODO: load
+            return null;
         }
 
         public void SaveData()
@@ -64,7 +50,8 @@ namespace Tsukinia.Core
 
             var dataToSaveJson = System.Text.Json.Serialization.JsonSerializer.ToString(dataToSave);
 
-            Storage[SavedAppDataStorageKey] = dataToSaveJson;
+            //TODO: save
+
         }
 
         private static string GetFilePath()
