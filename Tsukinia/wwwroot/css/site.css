@@ -156,3 +156,23 @@ background:purple;
 .large_font{
     font-size: 5em;
 }
+
+.activity_icon_font{
+    font-size: 2em;
+}
+
+.activity_icon_blue{
+    color: blue;
+}
+
+.activity_icon_red{
+    color: red;
+}
+
+.activity_icon_green{
+    color: green;
+}
+
+.activity_icon_purple{
+    color: purple;
+}

@@ -2,6 +2,7 @@
 @using Tsukinia.Core;
 @using Tsukinia.Translation;
 @using Tsukinia.AzureClient;
+@using Tsukinia.Presentation;
 
 <h1>@Tsukinia.Translation.TextProvider.GetText("Activity")</h1>
 
@@ -14,17 +15,17 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Type</th>
-                <th>Title</th>
-                <th>Points</th>
+                <th>@Tsukinia.Translation.TextProvider.GetText("Type")</th>
+                <th>@Tsukinia.Translation.TextProvider.GetText("Title")</th>
+                <th>@Tsukinia.Translation.TextProvider.GetText("Points")</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var userActivity in userActivities)
             {
                 <tr>
-                    <td>@userActivity.ActivityType</td>
-                    <td>@userActivity.ActivityTitle</td>
+                    <td><span class="activity_icon_font oi @userActivity.IconClass" aria-hidden="true"></span></td>
+                    <td>@userActivity.Title</td>
                     <td>@userActivity.Points</td>
                 </tr>
             }
@@ -34,8 +35,15 @@ else
 
 @functions {
 
-    List<UserActivityData> userActivities = AppManager.Instance.AppData?.ChildActivities;
+    List<ActivityItem> userActivities;
 
     string message = AppManager.Instance.AppData?.ChildActivities == null ? "No data to display" : null;
+
+    protected override void OnInit()
+    {
+        if(AppManager.Instance.AppData?.ChildActivities != null){
+            userActivities = AppManager.Instance.AppData?.ChildActivities.Select(x => new ActivityItem(x)).ToList();
+        }
+    }
 
 }
